@@ -1,0 +1,21 @@
+{
+  "name": "angular-rut-validator",
+  "main": "angular-rut-validator.js",
+  "homepage": "https://github.com/gpincheiraa/angular-rut-validator",
+  "authors": [
+    "Gonzalo Pincheira A. <g.pincheira.a@gmail.com>"
+  ],
+  "description": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-messages": "~1.5.2"
+  }
+}

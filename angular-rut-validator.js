@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('gpDirectives', [])
+    .module('gp.rutValidator', ['ngMessages'])
     .directive('gpRutValidator', directive);
   
   directive.$inject = ['$compile'];
