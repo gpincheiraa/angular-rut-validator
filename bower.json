@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-messages": "~1.5.2"
+    "angular-messages": "~1.5.2",
+    "angular": "~1.5.2"
   }
 }
