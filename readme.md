@@ -25,7 +25,7 @@ In your Javascript
 ```
 In your HTML
 
-```
+```html
  <div ng-app="exampleApp">
   <div ng-controller="ExampleController as example">
     <form name="formName">
