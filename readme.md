@@ -14,7 +14,7 @@ This plugin uses `angular-messages`.
 - Add in your main module the dependency 'gp.rutValidator'
 - Add in your input the directive 'gp-rut-validator'
 - Add in your form the ng-messages directive and add the `ng-message="rutInvalid"`. 
-- The best way for validate this it's using the `ng-model-options="{ updateOn: 'blur' }", because
+- The best way for validate this it's using the `ng-model-options="{ updateOn: 'blur' }`, because
   we need check the rut when the user on blur over the input.
 
 In your Javascript
