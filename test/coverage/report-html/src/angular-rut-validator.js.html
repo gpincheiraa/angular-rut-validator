@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/angular-rut-validator.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> angular-rut-validator.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>19/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">38.89% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>7/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.86% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">51.35% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>19/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(window, angular, undefined){
+&nbsp;
+  'use strict';
+&nbsp;
+  angular
+    .module('gp.rutValidator', []);
+&nbsp;
+  /*
+    Filtro que verifica el digito verificador de un rut dado
+  */
+  angular
+    .module('gp.rutValidator')
+    .filter('rutVerifier', filter);
+&nbsp;
+  function filter(){
+    return verificadorDeRut;
+  }
+&nbsp;
+  function verificadorDeRut(rut){
+       
+      /* 
+         Vamos a prevenir que la función sea invocada si se reciben datos que no sean de tipo string o que contengan un número
+         de dígitos que no valga la pena que verifiquemos. 
+         La expresión regular busca si se entrega una cantidad de digitos entre 1 y 7, cantidad que no es suficiente
+         para poder ser dividida en 2 partes para poder verificar el digito verificador. Una explicación más detallada y paso
+         a paso de la expresión regular en este link -&gt; https://regex101.com/r/gY1cP9/2
+      */
+&nbsp;
+      //FALTA REGEXP QUE COMPARE QUE TENGA UN FORMATO VÁLIDO, POR EJEMPLO QUE NO SEA 1.6299.22-2-8
+      <span class="missing-if-branch" title="if path not taken" >I</span>if(typeof rut !== 'string' || (/\b(\d{1,7}|[a-z]+)\b/i).test(rut.replace(/[\.\-]/g,''))) <span class="cstat-no" title="statement not covered" >return false;</span>
+      
+      //Extraemos solo lo que necesitamos del rut, los números y el digito verificador
+      rut = rut.match(/[0-9Kk]+/g).join('');
+&nbsp;
+      /*
+        Definimos una variable que irá aumentando en cada vuelta del ciclo
+        representando la serie 2,3,4,5,6,7. En caso que este factor llegue 
+        al número final de esta serie, se reinicia a 2.
+      */
+      var factor = 2,
+      /*
+        La variable suma irá guardando la suma parcial de la multiplicación entre el factor y el digito
+        del rut correspondiente 
+      */
+      suma = 0,
+      /*
+        Ya que nos interesa sólo calcular lo que está a la izquierda del dígito verificador,
+      nuestro iterador partirá desde el digito anterior al digito verificador en reversa (link del cálculo del rut).
+      */
+      l = rut.length - 1,
+      /*
+        La función slice (link acá -&gt; https://goo.gl/7KgPVV) permite utilizar como argumento un número negativo.
+        Al hacer esto definimos cuantos caracteres desde el final del array queremos abarcar. En nuestro 
+        caso queremos solo abarcar el último dígito. En caso se resultar ser una 'K', no aseguramos que siempre sea minúscula
+      */
+      digitoOriginal = rut.slice(-1).toLowerCase(),
+      //variable a la cuál asignaremos el dígito final calculado
+      digitoCalculado;
+       
+      /*En javascript los operadores se evalúan después de las aserciones como while o if
+       considerando que queremos recorrer hasta el dígito 0 y que este es considerado un falsy value (revisar este link-&gt; https://goo.gl/uX5yf4) utilizamos el siguiente ciclo while 
+      */
+      while(l--){
+        suma += +rut[l]*factor;
+        factor = factor === 7 ? 2
+                              : ++factor;
+      }
+      //si 11 menos el modulo de la suma obtenida es 11, digito verificador es 0, si 
+      digitoCalculado = 11 - (suma % 11);
+      digitoCalculado =  digitoCalculado === 11 ? <span class="branch-0 cbranch-no" title="branch not covered" >0</span>
+                                                : ( digitoCalculado === 10? <span class="branch-0 cbranch-no" title="branch not covered" >'k' </span>: digitoCalculado);
+      //convertimos en string el digito calculado y retornamos el resultado de la comparación con el digito verificador
+      return (''+digitoCalculado) === digitoOriginal;
+    }
+&nbsp;
+&nbsp;
+ /*
+    DIRECTIVA VALIDADOR DE RUT:
+&nbsp;
+    Genera errores de la librería ng-messages
+&nbsp;
+  */
+  angular
+    .module('gp.rutValidator')
+    .directive('gpRutValidator', directive);
+  
+  directive.$inject = ['$filter'];
+  
+<span class="fstat-no" title="function not covered" >  function directive($filter){</span>
+<span class="cstat-no" title="statement not covered" >    var ddo = {</span>
+      restrict: 'A',
+      require: 'ngModel',
+      link: linkFn
+    };
+<span class="cstat-no" title="statement not covered" >    return ddo;</span>
+    
+<span class="fstat-no" title="function not covered" >    function linkFn(scope, element, attrs, ngModel){</span>
+      
+      //restringe que se ingresen elementos no válidos
+<span class="cstat-no" title="statement not covered" >      var regexValidKeys = (/[\d\.\-k]/i),</span>
+          regexValidFormats = (/(\d{7,8}\-(\d|k))|(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})|(\d{8,9})/i);
+      
+<span class="cstat-no" title="statement not covered" >      element.bind('keypress', <span class="fstat-no" title="function not covered" >function(){</span></span>
+        
+<span class="cstat-no" title="statement not covered" >        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);</span>
+        
+<span class="cstat-no" title="statement not covered" >        if (!regexValidKeys.test(key)) {</span>
+<span class="cstat-no" title="statement not covered" >          event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >          return false;</span>
+        }
+&nbsp;
+      });
+&nbsp;
+      //validación se debe realizar al quitar el foco del input
+<span class="cstat-no" title="statement not covered" >      element.bind('focusout', <span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >        var rut = ngModel.$viewValue;</span>
+        
+<span class="cstat-no" title="statement not covered" >        if(!regexValidFormats.test(rut)){</span>
+<span class="cstat-no" title="statement not covered" >          ngModel.$setValidity('rutInvalid', false);</span>
+<span class="cstat-no" title="statement not covered" >          ngModel.$setValidity('invalidFormat', false);</span>
+<span class="cstat-no" title="statement not covered" >          scope.$apply();</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        ngModel.$setValidity('invalidFormat', true);</span>
+<span class="cstat-no" title="statement not covered" >        ngModel.$setValidity('rutInvalid', rut? $filter('rutVerifier')(rut) : true);</span>
+<span class="cstat-no" title="statement not covered" >        scope.$apply();</span>
+&nbsp;
+      });
+&nbsp;
+    }
+  }
+&nbsp;
+})(window, angular);</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon May 09 2016 17:46:58 GMT-0400 (CLT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

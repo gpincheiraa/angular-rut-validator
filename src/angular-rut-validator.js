@@ -3,56 +3,20 @@
   'use strict';
 
   angular
-    .module('gp.rutValidator', ['ngMessages'])
-    .directive('gpRutValidator', directive);
-  
-  directive.$inject = ['$compile'];
-  
-  function directive($compile){
-    var ddo = {
-      restrict: 'A',
-      require: 'ngModel',
-      link: linkFn
-    };
-    return ddo;
-    
-    function linkFn(scope, element, attrs, ngModel){
-      
-      //restringe que se ingresen elementos no válidos
-      var regexValidKeys = (/[\d\.\-k]/i),
-          regexValidFormats = (/(\d{7,8}\-(\d|k))|(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})|(\d{8,9})/i);
-      
-      element.bind('keypress', function(){
-        
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        
-        if (!regexValidKeys.test(key)) {
-          event.preventDefault();
-          return false;
-        }
+    .module('gp.rutValidator', []);
 
-      });
+  /*
+    Filtro que verifica el digito verificador de un rut dado
+  */
+  angular
+    .module('gp.rutValidator')
+    .filter('rutVerifier', filter);
 
-      //validación se debe realizar al quitar el foco del input
-      element.bind('focusout', function(){
-        var rut = ngModel.$viewValue;
-        
-        if(!regexValidFormats.test(rut)){
-          ngModel.$setValidity('rutInvalid', false);
-          ngModel.$setValidity('invalidFormat', false);
-          scope.$apply();
-          return;
-        }
+  function filter(){
+    return verificadorDeRut;
+  }
 
-        ngModel.$setValidity('invalidFormat', true);
-        ngModel.$setValidity('rutInvalid', rut? verificadorDeRut(rut): true);
-        scope.$apply();
-
-      });
-
-    }
-    
-    function verificadorDeRut(rut){
+  function verificadorDeRut(rut){
        
       /* 
          Vamos a prevenir que la función sea invocada si se reciben datos que no sean de tipo string o que contengan un número
@@ -109,6 +73,62 @@
       return (''+digitoCalculado) === digitoOriginal;
     }
 
+
+ /*
+    DIRECTIVA VALIDADOR DE RUT:
+
+    Genera errores de la librería ng-messages
+
+  */
+  angular
+    .module('gp.rutValidator')
+    .directive('gpRutValidator', directive);
+  
+  directive.$inject = ['$filter'];
+  
+  function directive($filter){
+    var ddo = {
+      restrict: 'A',
+      require: 'ngModel',
+      link: linkFn
+    };
+    return ddo;
+    
+    function linkFn(scope, element, attrs, ngModel){
+      
+      //restringe que se ingresen elementos no válidos
+      var regexValidKeys = (/[\d\.\-k]/i),
+          regexValidFormats = (/(\d{7,8}\-(\d|k))|(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})|(\d{8,9})/i);
+      
+      element.bind('keypress', function(){
+        
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        
+        if (!regexValidKeys.test(key)) {
+          event.preventDefault();
+          return false;
+        }
+
+      });
+
+      //validación se debe realizar al quitar el foco del input
+      element.bind('focusout', function(){
+        var rut = ngModel.$viewValue;
+        
+        if(!regexValidFormats.test(rut)){
+          ngModel.$setValidity('rutInvalid', false);
+          ngModel.$setValidity('invalidFormat', false);
+          scope.$apply();
+          return;
+        }
+
+        ngModel.$setValidity('invalidFormat', true);
+        ngModel.$setValidity('rutInvalid', rut? $filter('rutVerifier')(rut) : true);
+        scope.$apply();
+
+      });
+
+    }
   }
 
 })(window, angular);
