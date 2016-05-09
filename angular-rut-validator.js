@@ -18,7 +18,7 @@
     function linkFn(scope, element, attrs, ngModel){
       ngModel.$validators.rutInvalid = function(rut) {
         if(rut){
-          return verificarRut(rut);
+          return verificadorDeRut(rut);
         }
       };
     }
