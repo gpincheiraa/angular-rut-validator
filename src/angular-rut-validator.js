@@ -5,30 +5,43 @@
   angular
     .module('gp.rutValidator', []);
 
+  
+  /*
+    Filtro que verifica la validez de formato de un rut dado
+  */
+  angular
+    .module('gp.rutValidator')
+    .filter('rutCheckFormat', checkFormatFilter);
+
+  function checkFormatFilter(){
+    return verificarFormato;
+  }
+
+  function verificarFormato(rut){
+   
+   var regexFormatosValidos = (/^(\d{7,8}\-(\d|k))$|^(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})$|^(\d{8,9})$/i),
+       esValido = true;
+ 
+    if(typeof rut !== 'string' || !regexFormatosValidos.test(rut))
+      esValido = false;
+    console.log('verificando regex',esValido);
+    return esValido;
+  }
+
   /*
     Filtro que verifica el digito verificador de un rut dado
   */
   angular
     .module('gp.rutValidator')
-    .filter('rutVerifier', filter);
+    .filter('rutVerifier', rutVerifierFilter);
 
-  function filter(){
-    return verificadorDeRut;
-  }
+  rutVerifierFilter.$inject = ['rutCheckFormatFilter'];
 
-  function verificadorDeRut(rut){
-       
-      /* 
-         Vamos a prevenir que la función sea invocada si se reciben datos que no sean de tipo string o que contengan un número
-         de dígitos que no valga la pena que verifiquemos. 
-         La expresión regular busca si se entrega una cantidad de digitos entre 1 y 7, cantidad que no es suficiente
-         para poder ser dividida en 2 partes para poder verificar el digito verificador. Una explicación más detallada y paso
-         a paso de la expresión regular en este link -> https://regex101.com/r/gY1cP9/2
-      */
-
-      //FALTA REGEXP QUE COMPARE QUE TENGA UN FORMATO VÁLIDO, POR EJEMPLO QUE NO SEA 1.6299.22-2-8
-      if(typeof rut !== 'string' || (/\b(\d{1,7}|[a-z]+)\b/i).test(rut.replace(/[\.\-]/g,''))) return false;
+  function rutVerifierFilter(rutCheckFormatFilter){
+    return function(rut){
       
+      //verificamos si el rut dado tiene un formato válido
+      if(!rutCheckFormatFilter(rut)) return false;
       //Extraemos solo lo que necesitamos del rut, los números y el digito verificador
       rut = rut.match(/[0-9Kk]+/g).join('');
 
@@ -71,8 +84,8 @@
                                                 : ( digitoCalculado === 10? 'k' : digitoCalculado);
       //convertimos en string el digito calculado y retornamos el resultado de la comparación con el digito verificador
       return (''+digitoCalculado) === digitoOriginal;
-    }
-
+    };
+  }
 
  /*
     DIRECTIVA VALIDADOR DE RUT:
@@ -97,9 +110,7 @@
     function linkFn(scope, element, attrs, ngModel){
       
       //restringe que se ingresen elementos no válidos
-      var regexValidKeys = (/[\d\.\-k]/i),
-          regexValidFormats = (/(\d{7,8}\-(\d|k))|(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})|(\d{8,9})/i);
-      
+      var regexValidKeys = (/[\d\.\-k]/i);
       element.bind('keypress', function(){
         
         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
