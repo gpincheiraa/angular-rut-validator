@@ -38,6 +38,7 @@
         var rut = ngModel.$viewValue;
         
         if(!regexValidFormats.test(rut)){
+          ngModel.$setValidity('rutInvalid', false);
           ngModel.$setValidity('invalidFormat', false);
           scope.$apply();
           return;
