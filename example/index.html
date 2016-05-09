@@ -1,0 +1,35 @@
+<html ng-app="exampleApp">
+
+<body>
+  <div >
+    <div ng-controller="ExampleController as example" class="ng-scope">
+      <form name="formName" class="ng-dirty ng-valid-parse ng-pending">
+        <label>Rut</label>
+        <input type="text" name="rut" ng-model="example.rut" gp-rut-validator>
+        <div ng-messages="formName.rut.$error">
+          <div ng-message="rutInvalid">Rut invalido.</div>
+          <div ng-message="invalidFormat">Rut tiene formato inválido</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular-messages.js"></script>
+  <script src="../angular-rut-validator.js"></script>
+  <script>
+    (function () {
+        angular.module('exampleApp', [
+          'ngMessages',
+          'gp.rutValidator'
+        ]);
+        angular.module('exampleApp').controller('ExampleController', Controller);
+        function Controller() {
+          var vm = this;
+        }
+    }());
+
+  </script>
+</body>
+</html>

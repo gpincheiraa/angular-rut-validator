@@ -7,6 +7,7 @@
     .directive('gpRutValidator', directive);
   
   directive.$inject = ['$compile'];
+  
   function directive($compile){
     var ddo = {
       restrict: 'A',
@@ -16,11 +17,38 @@
     return ddo;
     
     function linkFn(scope, element, attrs, ngModel){
-      ngModel.$validators.rutInvalid = function(rut) {
-        if(rut){
-          return verificadorDeRut(rut);
+      
+      //restringe que se ingresen elementos no válidos
+      var regexValidKeys = (/[\d\.\-k]/i),
+          regexValidFormats = (/(\d{7,8}\-(\d|k))|(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})|(\d{8,9})/i);
+      
+      element.bind('keypress', function(){
+        
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        
+        if (!regexValidKeys.test(key)) {
+          event.preventDefault();
+          return false;
         }
-      };
+
+      });
+
+      //validación se debe realizar al quitar el foco del input
+      element.bind('focusout', function(){
+        var rut = ngModel.$viewValue;
+        
+        if(!regexValidFormats.test(rut)){
+          ngModel.$setValidity('invalidFormat', false);
+          scope.$apply();
+          return;
+        }
+
+        ngModel.$setValidity('invalidFormat', true);
+        ngModel.$setValidity('rutInvalid', rut? verificadorDeRut(rut): true);
+        scope.$apply();
+
+      });
+
     }
     
     function verificadorDeRut(rut){

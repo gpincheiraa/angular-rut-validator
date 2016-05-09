@@ -1,39 +1,48 @@
 ## Angular Rut Validator
 
-Example of usage http://codepen.io/gpincheiraa/pen/Kzmdmg
+Ejemplo de uso http://codepen.io/gpincheiraa/pen/Kzmdmg
 
 
-### Installation
+### Instalación
 
 `bower install --save angular-rut-validator`
 
-### Usage
+### Uso
 
-This plugin uses `angular-messages`. 
+Para usar este plugin
 
-- Add in your main module the dependency 'gp.rutValidator'
-- Add in your input the directive 'gp-rut-validator'
-- Add in your form the ng-messages directive and add the `ng-message="rutInvalid"`. 
-- The best way for validate this it's using the `ng-model-options="{ updateOn: 'blur' }`, because
-  we need check the rut when the user on blur over the input.
+- Agrega a tu módulo principal la dependencia 'gp.rutValidator'
+- Agrega en tu input la directiva 'gp-rut-validator'
+- Agrega entre tus mensajes `ng-message="rutInvalid"`
+- Opcionalmente puedes agregar el mensaje  `ng-message="invalidFormat"`. 
 
-In your Javascript
+- Formatos válidos: 
+  1. Sólo números. Ej: 162992228
+  2. Números, puntos y guión. Ej: 16.299.222-8
+  3. Números y guión. Ej: 16299222-8
+
+*Notas*
+- No se permite ingresar caracteres que no sean guion,punto o dígitos con excepción de la letra k.
+- El validador se activa cuando se quita el foco del input
+
+
+Javascript
 
 ```javascript
   angular
     .module('exampleApp', ['ngMessages','gp.rutValidator']);
 ```
-In your HTML
+HTML
 
 ```html
  <div ng-app="exampleApp">
   <div ng-controller="ExampleController as example">
     <form name="formName">
       <label>Rut</label>
-      <input type="text" name="rut" ng-model="example.rut" ng-model-options="{ updateOn: 'blur' }" gp-rut-validator/>
+      <input type="text" name="rut" ng-model="example.rut" gp-rut-validator/>
       <div ng-messages="formName.rut.$error">
-    <div ng-message="rutInvalid">Rut invalido.</div>
-</div>
+        <div ng-message="rutInvalid">Rut invalido.</div>
+      </div>
     </form>
   </div>
 </div>
