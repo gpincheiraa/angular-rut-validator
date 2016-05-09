@@ -35,7 +35,7 @@
        listaRutsValidos.forEach(function(rut){
           esRutValido = filter('rutVerifier')(rut);
           expect(esRutValido).toBe(true);
-       });   
+       });
     }
 
 
@@ -49,15 +49,14 @@
                               '17.a311.978-j',
                               '91',
                               'abxsx',
-                              '1.6.2.9.9.228'
+                              '1.6.2.9.9.2228'
                             ],
-          esRutValido = true;
+          esRutValido = false;
        
        listaRutsInValidos.forEach(function(rut){
           esRutValido = filter('rutVerifier')(rut);
-          console.log(rut, esRutValido);
           expect(esRutValido).toBe(false);
-       }); 
+       });
     }
     
   }

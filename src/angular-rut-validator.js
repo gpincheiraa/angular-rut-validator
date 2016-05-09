@@ -24,7 +24,6 @@
  
     if(typeof rut !== 'string' || !regexFormatosValidos.test(rut))
       esValido = false;
-    console.log('verificando regex',esValido);
     return esValido;
   }
 
