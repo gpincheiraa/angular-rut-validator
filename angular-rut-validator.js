@@ -34,7 +34,7 @@
       */
 
       //FALTA REGEXP QUE COMPARE QUE TENGA UN FORMATO VÁLIDO, POR EJEMPLO QUE NO SEA 1.6299.22-2-8
-      if(typeof rut !== 'string' || /\b\d{1,7}\b/.test(rut)) return false;
+      if(typeof rut !== 'string' || (/\b(\d{1,7}|[a-z]+)\b/i).test(rut)) return false;
       
       //Extraemos solo lo que necesitamos del rut, los números y el digito verificador
       rut = rut.match(/[0-9Kk]+/g).join('');
