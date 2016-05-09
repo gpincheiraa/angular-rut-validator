@@ -34,7 +34,7 @@
       */
 
       //FALTA REGEXP QUE COMPARE QUE TENGA UN FORMATO VÁLIDO, POR EJEMPLO QUE NO SEA 1.6299.22-2-8
-      if(typeof rut !== 'string' || (/\b(\d{1,7}|[a-z]+)\b/i).test(rut)) return false;
+      if(typeof rut !== 'string' || (/\b(\d{1,7}|[a-z]+)\b/i).test(rut.replace(/[\.\-]/g,''))) return false;
       
       //Extraemos solo lo que necesitamos del rut, los números y el digito verificador
       rut = rut.match(/[0-9Kk]+/g).join('');
@@ -69,7 +69,7 @@
       */
       while(l--){
         suma += +rut[l]*factor;
-        factor = factor === 7 ? 2 
+        factor = factor === 7 ? 2
                               : ++factor;
       }
       //si 11 menos el modulo de la suma obtenida es 11, digito verificador es 0, si 
