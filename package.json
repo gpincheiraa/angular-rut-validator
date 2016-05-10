@@ -4,7 +4,7 @@
   "description": "Una directiva para validar ruts",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -13,11 +13,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "coveralls": "^2.11.9",
     "grunt": "^0.4.5",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-open": "^0.2.3",
     "grunt-contrib-connect": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-injector": "^0.6.1",
+    "grunt-open": "^0.2.3",
     "grunt-shell": "^1.2.1",
     "grunt-wiredep": "^3.0.1",
     "jasmine-core": "^2.4.1",
