@@ -1,7 +1,27 @@
 (function() {
   'use strict';
   
-  describe('Angular Rut Validator',validatorSpec);
+
+  //HELPERS GLOBALES
+  var listaRutsValidos = [  '11792804-7',
+                            '180958193',
+                            '223961487',
+                            '17.311.978-k',
+                            '9.855.029-1',
+                            '11.111.111-1'
+                        ],
+      listaRutsInValidos = [
+                              '11792804-1',
+                              '1809581',
+                              'a223961487',
+                              '17.a311.978-j',
+                              '91',
+                              'abxsx',
+                              '1.6.2.9.9.2228'
+                            ];
+          
+  /* Filters  Testing */
+  describe('Angular Rut Filters',validatorSpec);
 
   function validatorSpec(){
 
@@ -19,18 +39,10 @@
     //////////////////   SPECS //////////////////////////////////
      
 
-    it('Debería retornar "true" para rut válidos utilizando filtro "rutVerifier"', spec1);
+    it('1. Debería retornar "true" para rut válidos utilizando filtro "rutVerifier"', spec1);
     
     function spec1(){
-      var listaRutsValidos = [
-                              '11792804-7',
-                              '180958193',
-                              '223961487',
-                              '17.311.978-k',
-                              '9.855.029-1',
-                              '11.111.111-1'
-                            ],
-          esRutValido = false;
+      var esRutValido = false;
        
        listaRutsValidos.forEach(function(rut){
           esRutValido = filter('rutVerifier')(rut);
@@ -39,25 +51,132 @@
     }
 
 
-    it('Debería retornar "false" para rut inválidos utilizando filtro "rutVerifier"', spec2);
+    it('2. Debería retornar "false" para rut inválidos utilizando filtro "rutVerifier"', spec2);
 
     function spec2(){
-      var listaRutsInValidos = [
-                              '11792804-1',
-                              '1809581',
-                              'a223961487',
-                              '17.a311.978-j',
-                              '91',
-                              'abxsx',
-                              '1.6.2.9.9.2228'
-                            ],
-          esRutValido = false;
+      var esRutValido = false;
        
        listaRutsInValidos.forEach(function(rut){
           esRutValido = filter('rutVerifier')(rut);
           expect(esRutValido).toBe(false);
        });
     }
+    
+  }
+
+  /* Directive Testing */
+
+  describe('Angular Rut Validator Directive',validatorDirectiveSpec);
+
+  function validatorDirectiveSpec(){
+
+    //////////////  GLOBALS   ////////////////////////////////
+    var scope, element, evt;
+    //////////////  BEFORE EACH ////////////////////////////////
+    beforeEach(module('gp.rutValidator'));
+    beforeEach(inject(eachSpec));
+
+    function eachSpec($rootScope, $compile){
+      element = angular.element('<input ng-model="rut" gp-rut-validator>');
+      scope = $rootScope.$new();
+      
+      $compile(element)(scope);
+      scope.$digest();
+    }
+
+    ////////////////// HELPERS ///////////////////////////////////
+    
+    function pressKey(keyCode) {
+
+      try {
+        
+        // Chrome, Safari, Firefox
+        evt = new KeyboardEvent('keypress');
+        
+        delete evt.keyCode;
+      
+        Object.defineProperty(evt, 'keyCode', {'value': keyCode});
+      
+      } catch (e) {
+        
+        // PhantomJS 
+        evt = document.createEvent('Events');
+        evt.initEvent('keypress', true, true);
+        evt.keyCode = keyCode;
+      }
+
+      element[0].dispatchEvent(evt);
+    }
+
+    function mouseFocus(){
+      try {
+        
+        // Chrome, Safari, Firefox
+        evt = new MouseEvent('focusout');
+        
+      } catch (e) {
+        
+        // PhantomJS 
+        evt = document.createEvent('Events');
+        evt.initEvent('focusout', true, true);
+      }
+
+      element[0].dispatchEvent(evt);
+    }
+
+
+    //////////////////   SPECS //////////////////////////////////
+    it('1. Debería validar rut en el evento de mosue "focusout". ', spec1);
+    
+    function spec1(){
+      
+      var ngModelCtrl = element.controller('ngModel');
+
+      listaRutsInValidos.forEach(function(rut){
+        
+        scope.rut = rut;
+        scope.$apply();
+        
+        mouseFocus();
+        
+        expect(ngModelCtrl.$error.rutInvalid).toBeDefined();
+        expect(ngModelCtrl.$error.rutInvalid).toBe(true);
+      });
+
+      listaRutsValidos.forEach(function(rut){
+        
+        scope.rut = rut;
+        scope.$apply();
+        
+        mouseFocus();
+        
+        expect(ngModelCtrl.$error.rutInvalid).not.toBeDefined();
+
+      });
+
+    }
+
+    // it('Debería evitar que se introduzcan caracteres no válidos"', spec1);
+    
+    // function spec1(){
+    //   var invalidCharacterKeys = [
+    //                                 'a'.charCodeAt(0),
+    //                                 'z'.charCodeAt(0),
+    //                                 'b'.charCodeAt(0),
+    //                                 '1'.charCodeAt(0)
+    //                               ],
+    //     ngModelCtrl = element.controller('ngModel');
+
+    //   invalidCharacterKeys.forEach(function(keyCode){
+    //     pressKey(keyCode);
+
+    //     console.log(ngModelCtrl);
+
+    //     expect(scope.rut).toBe('');
+    //   });
+
+    // }
+
     
   }
 

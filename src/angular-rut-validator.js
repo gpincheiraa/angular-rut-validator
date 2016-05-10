@@ -110,12 +110,13 @@
       
       //restringe que se ingresen elementos no válidos
       var regexValidKeys = (/[\d\.\-k]/i);
-      element.bind('keypress', function(){
+      
+      element.bind('keypress', function(e){
         
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        var key = String.fromCharCode(e.keyCode);
         
         if (!regexValidKeys.test(key)) {
-          event.preventDefault();
+          e.preventDefault();
           return false;
         }
 
@@ -123,17 +124,11 @@
 
       //validación se debe realizar al quitar el foco del input
       element.bind('focusout', function(){
+        
         var rut = ngModel.$viewValue;
         
-        if(!regexValidFormats.test(rut)){
-          ngModel.$setValidity('rutInvalid', false);
-          ngModel.$setValidity('invalidFormat', false);
-          scope.$apply();
-          return;
-        }
-
-        ngModel.$setValidity('invalidFormat', true);
         ngModel.$setValidity('rutInvalid', rut? $filter('rutVerifier')(rut) : true);
+        
         scope.$apply();
 
       });
