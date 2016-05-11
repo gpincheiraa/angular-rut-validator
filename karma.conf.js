@@ -12,6 +12,7 @@ module.exports = function(config) {
         'karma-phantomjs-launcher',
         'karma-spec-reporter',
         'karma-coverage',
+        'karma-coveralls',
         'karma-sinon'
 
     ],
@@ -49,7 +50,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec','coverage'],
+    reporters: ['spec','coverage','coveralls'],
     //reporters: ['spec'],
 
     coverageReporter: {
