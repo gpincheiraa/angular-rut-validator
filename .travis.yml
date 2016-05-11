@@ -3,13 +3,13 @@ sudo: false
 node_js:
   - 0.10
 script: 
-  - travis_wait 20 karma start -–single-run 
+  - travis_wait 1 karma start -–single-run 
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 before_script:
-  - npm install -g bower 
-  - npm install
-  - bower install
+  - travis_wait 2 npm install -g bower 
+  - travis_wait 2 npm install
+  - travis_wait 1 bower install
 after_success:
   - coveralls
