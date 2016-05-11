@@ -3,14 +3,8 @@ sudo: false
 node_js:
   - 0.10
 script: node_modules/karma/bin/karma start karma.conf.js –single-run
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 before_script:
-  - npm install 
-after_script: NODE_ENV=cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js && rm -rf coverage
-
-notifications:
-
-  email:
-    recipients:
-      – g.pincheira.a@gmail.com
-
-on_failure: always
+  - npm install
