@@ -3,7 +3,7 @@ sudo: false
 node_js:
   - 0.10
 script: 
-  - travis_wait karma start -–single-run 
+  - travis_wait 20 karma start -–single-run 
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
