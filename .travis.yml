@@ -2,7 +2,7 @@ language: node_js
 sudo: false
 node_js:
   - 0.10
-script: node_modules/karma/bin/karma start karma.conf.js -–single-run
+script: karma start -–single-run
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
