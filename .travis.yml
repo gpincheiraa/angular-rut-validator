@@ -10,3 +10,7 @@ before_script:
   - npm install -g bower 
   - npm install
   - bower install
+after_script:
+  - node --version
+after_success:
+  - coveralls
