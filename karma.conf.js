@@ -94,6 +94,13 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
+    
+    /*       
+        IMPORTANTE PARA INTEGRACIÓN CON TRAVIS
+
+    */
+    
+    //Es necesario manejarr en true la opción singleRun para la integración continua en Travis
     singleRun: true,
 
     // Concurrency level
