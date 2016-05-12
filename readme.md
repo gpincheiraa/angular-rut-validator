@@ -1,6 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/gpincheiraa/angular-rut-validator/badge.svg?branch=master)](https://coveralls.io/github/gpincheiraa/angular-rut-validator?branch=master)
-
-[![Build Status](https://travis-ci.org/gpincheiraa/angular-rut-validator.png)](https://travis-ci.org/gpincheiraa/angular-rut-validator)
+[![Coverage Status](https://coveralls.io/repos/github/gpincheiraa/angular-rut-validator/badge.svg?branch=master)](https://coveralls.io/github/gpincheiraa/angular-rut-validator?branch=master)[![Build Status](https://travis-ci.org/gpincheiraa/angular-rut-validator.png)](https://travis-ci.org/gpincheiraa/angular-rut-validator)
 
 
 ## Angular Rut Validator
