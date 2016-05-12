@@ -1,7 +1,15 @@
-[![Coverage Status](https://coveralls.io/repos/github/gpincheiraa/angular-rut-validator/badge.svg?branch=master)](https://coveralls.io/github/gpincheiraa/angular-rut-validator?branch=master)[![Build Status](https://travis-ci.org/gpincheiraa/angular-rut-validator.png)](https://travis-ci.org/gpincheiraa/angular-rut-validator)
-
-
 ## Angular Rut Validator
+
+[travis-image]: https://travis-ci.org/gpincheiraa/angular-rut-validator.png
+[travis-url]: https://travis-ci.org/gpincheiraa/angular-rut-validator
+
+[coveralls-image]: https://coveralls.io/repos/github/gpincheiraa/angular-rut-validator/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/gpincheiraa/angular-rut-validator?branch=master
+
+
+[![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
+
+
 
 Ejemplo de uso http://codepen.io/gpincheiraa/pen/Kzmdmg
 
