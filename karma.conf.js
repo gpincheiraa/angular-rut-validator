@@ -62,6 +62,12 @@ module.exports = function(config) {
         return browser.toLowerCase().split(/[ /-]/)[0];
       },
       reporters: [
+        
+        { 
+            type: 'lcov', 
+            subdir: 'report-lcov'
+        },
+
         {
             type : 'html',
             subdir: 'report-html'
