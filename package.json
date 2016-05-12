@@ -4,7 +4,7 @@
   "description": "Una directiva para validar ruts",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover jasmine-node --captureExceptions spec/ && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test": ""
   },
   "repository": {
     "type": "git",

@@ -127,7 +127,7 @@
 
 
     //////////////////   SPECS //////////////////////////////////
-    it('1. Debería validar rut en el evento de mosue "focusout". ', spec1);
+    it('1. Debería validar rut en el evento de mouse "focusout". ', spec1);
     
     function spec1(){
       
