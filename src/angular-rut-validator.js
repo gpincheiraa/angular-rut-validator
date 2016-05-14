@@ -4,8 +4,6 @@
 
   angular
     .module('gp.rutValidator', []);
-
-  
   /*
     Filtro que verifica la validez de formato de un rut dado
   */
@@ -19,12 +17,9 @@
 
   function verificarFormato(rut){
    
-   var regexFormatosValidos = (/^(\d{7,8}\-(\d|k))$|^(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})$|^(\d{8,9})$/i),
-       esValido = true;
- 
-    if(typeof rut !== 'string' || !regexFormatosValidos.test(rut))
-      esValido = false;
-    return esValido;
+    var regexFormatosValidos = (/^(\d{7,8}\-(\d|k))$|^(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})$|^(\d{8,9})$/i);
+
+    return (typeof rut === 'string') && regexFormatosValidos.test(rut);
   }
 
   /*
@@ -39,7 +34,9 @@
   function rutVerifierFilter(rutCheckFormatFilter){
     return function(rut){
       
-      //verificamos si el rut dado tiene un formato válido
+      //Quitamos espacios en blanco en caso de traer
+      rut = rut.trim();
+      //Verificamos si el rut dado tiene un formato válido
       if(!rutCheckFormatFilter(rut)) return false;
       //Extraemos solo lo que necesitamos del rut, los números y el digito verificador
       rut = rut.match(/[0-9Kk]+/g).join('');
