@@ -2,24 +2,36 @@
 
   'use strict';
 
-  describe('Sectors Controller', loginSpecs);
+
+  describe('Angular Rut Validator', loginSpecs);
 
   function loginSpecs(){
 
-    it('Debería restringir el ingreso de caracteres no válidos', spec1);
+
+    it('Debería restringir caracteres no válidos', spec1);
 
     function spec1(){
+      var rutInput;
+
+      rutInput = element(by.name('rut'));
       
-      browser.get('http://localhost');
+      rutInput.sendKeys('a');
 
-      buttonDetails = element(by.css('.plots-list tbody a.btn:nth-child(2)'));
+      expect(rutInput.getAttribute('value')).toBe('');
 
-      buttonDetails.click();
+      rutInput.sendKeys('1');
 
-      expect(browser.getLocationAbsUrl()).toMatch(plotMatchRegex);
+      expect(rutInput.getAttribute('value')).toBe('1');
+
+      rutInput.sendKeys('6');
+
+      expect(rutInput.getAttribute('value')).toBe('16');
+
+      rutInput.sendKeys('j');
+
+      expect(rutInput.getAttribute('value')).toBe('16');
+
     }
-
-
   }
 
 })();

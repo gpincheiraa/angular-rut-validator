@@ -28,7 +28,7 @@ module.exports.config = {
     jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
 
     browser.driver.manage().window().maximize();
-    browser.get('http://localhost');
+    browser.get('http://localhost:8080');
   }
 
 
