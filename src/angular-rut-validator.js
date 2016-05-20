@@ -12,14 +12,21 @@
     .filter('rutCheckFormat', checkFormatFilter);
 
   function checkFormatFilter(){
-    return verificarFormato;
+    return function (rut){
+      var regexFormatosValidos = (/^(\d{7,8}\-(\d|k))$|^(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})$|^(\d{8,9})$/i);
+
+      return (typeof rut === 'string') && regexFormatosValidos.test(rut);
+    };
   }
 
-  function verificarFormato(rut){
-   
-    var regexFormatosValidos = (/^(\d{7,8}\-(\d|k))$|^(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})$|^(\d{8,9})$/i);
+  angular
+    .module('gp.rutValidator')
+    .filter('rutCleanFormat', cleanFormatFilter);
 
-    return (typeof rut === 'string') && regexFormatosValidos.test(rut);
+  function cleanFormatFilter(){
+    return function (rut){
+      return rut.match(/[0-9Kk]+/g).join('');
+    };
   }
 
   /*
@@ -29,9 +36,9 @@
     .module('gp.rutValidator')
     .filter('rutVerifier', rutVerifierFilter);
 
-  rutVerifierFilter.$inject = ['rutCheckFormatFilter'];
+  rutVerifierFilter.$inject = ['rutCheckFormatFilter', 'rutCleanFormatFilter'];
 
-  function rutVerifierFilter(rutCheckFormatFilter){
+  function rutVerifierFilter(rutCheckFormatFilter, rutCleanFormatFilter){
     return function(rut){
       
       //Quitamos espacios en blanco en caso de traer
@@ -39,7 +46,7 @@
       //Verificamos si el rut dado tiene un formato válido
       if(!rutCheckFormatFilter(rut)) return false;
       //Extraemos solo lo que necesitamos del rut, los números y el digito verificador
-      rut = rut.match(/[0-9Kk]+/g).join('');
+      rut = rutCleanFormatFilter(rut);
 
       /*
         Definimos una variable que irá aumentando en cada vuelta del ciclo
