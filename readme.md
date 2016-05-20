@@ -58,3 +58,25 @@ HTML
   </div>
 </div>
 ```
+
+## Filtros disponibles
+
+  **rutCheckFormat** : Filtro que sirve para validar si el formato entregado es válido
+ 
+  Uso:
+   
+  ```javascript
+     var rut = '11.111.111-1', 
+         isValid = $filter('rutCheckFormat')(rut); //true
+      
+      rut = '1.1.11.11aab1-1';
+      isValid = $filter('rutCheckFormat')(rut); //false
+   ```
+
+ **rutCleanFormat** : Filtro que sirve para quitar todos los caracteres y dejar solo los números de un rut
+ 
+  Uso: 
+  
+  ```javascript
+     var rut = $filter('rutCleanFormat')('11.111.111-1'); //111111111
+   ```
