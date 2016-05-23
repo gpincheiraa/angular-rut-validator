@@ -61,16 +61,19 @@ HTML
 
 ## Filtros disponibles
 
+Estos son los filtros que están disponibles a través de esta directiva. Recuerda que estos filtros son solo formateadores y no 
+verifican si la entrada dada es un rut válido.
+
   **rutCheckFormat** : Filtro que sirve para validar si el formato entregado es válido
  
   Uso:
    
   ```javascript
-     var rut = '11.111.111-1', 
-         isValid = $filter('rutCheckFormat')(rut); //true
+    var rut = '11.111.111-1', 
+        isValid = $filter('rutCheckFormat')(rut); //true
       
-      rut = '1.1.11.11aab1-1';
-      isValid = $filter('rutCheckFormat')(rut); //false
+    rut = '1.1.11.11aab1-1';
+    isValid = $filter('rutCheckFormat')(rut); //false
    ```
 
  **rutCleanFormat** : Filtro que sirve para quitar todos los caracteres y dejar solo los números de un rut
@@ -78,5 +81,13 @@ HTML
   Uso: 
   
   ```javascript
-     var rut = $filter('rutCleanFormat')('11.111.111-1'); //111111111
-   ```
+    var rut = $filter('rutCleanFormat')('11.111.111-1'); //111111111
+  ```
+
+ **rutFormat** : Filtro que sirve para formatear un rut al formato de guiones y puntos
+ 
+  Uso: 
+  
+  ```javascript
+    var rut = $filter('rutFormat')('222222222'); //22.222.222-2
+  ```

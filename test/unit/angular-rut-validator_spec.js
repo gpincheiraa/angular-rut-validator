@@ -12,7 +12,7 @@
                             '  6480644-0  '
                         ],
       listaRutsInValidos = [
-                              '11792804-1',
+                              '12804-1',
                               '1809581',
                               'a223961487',
                               '17.a311.978-j',
@@ -45,10 +45,10 @@
     function spec1(){
       var esRutValido = false;
        
-       listaRutsValidos.forEach(function(rut){
-          esRutValido = filter('rutVerifier')(rut);
-          expect(esRutValido).toBe(true);
-       });
+      listaRutsValidos.forEach(function(rut){
+        esRutValido = filter('rutVerifier')(rut);
+        expect(esRutValido).toBe(true);
+      });
     }
 
 
@@ -57,11 +57,40 @@
     function spec2(){
       var esRutValido = false;
        
-       listaRutsInValidos.forEach(function(rut){
-          esRutValido = filter('rutVerifier')(rut);
-          expect(esRutValido).toBe(false);
-       });
+      listaRutsInValidos.forEach(function(rut){
+        esRutValido = filter('rutVerifier')(rut);
+        expect(esRutValido).toBe(false);
+      });
     }
+
+    it('3. Debería retornar un rut formateado segun la opcion de formateo dada utilizando el filtro "rutFormat"', spec3);
+
+    function spec3(){
+      var rut = '111111111';
+      expect(filter('rutFormat')(rut)).toBe('11.111.111-1');
+    }
+
+    it('4. Debería retornar un rut limpio sin rut ni guiones utilizand el filtro "rutCleanFormat"', spec4);
+
+    function spec4(){
+      var rut = '11.111.111-1';
+
+      expect(filter('rutCleanFormat')(rut)).toBe('111111111');
+    }
+
+    it('5. Debería checkear si el formato es válido utilizando el rut "rutCheckFormat"', spec5);
+
+    function spec5(){
+      var esFormatoValido;
+      
+      listaRutsInValidos.forEach(function(rut){
+        esFormatoValido = filter('rutCheckFormat')(rut);
+        expect(esFormatoValido).toBe(false);
+      });
+ 
+    }
+    
+
     
   }
 

@@ -19,6 +19,22 @@
     };
   }
 
+  /*
+    Filtro que formatea el rut a un formato válido
+  */
+  angular
+    .module('gp.rutValidator')
+    .filter('rutFormat', rutFormatter);
+
+  function rutFormatter(){
+    return function (rut, option){
+      
+      rut = rut.match(/[0-9Kk]+/g).join('');
+        
+      return rut.slice(0,-1).replace((/[0-9](?=(?:[0-9]{3})+(?![0-9]))/g), '$&\.') + '-' + rut.slice(-1).toLowerCase();
+    };
+  }
+
   angular
     .module('gp.rutValidator')
     .filter('rutCleanFormat', cleanFormatFilter);
