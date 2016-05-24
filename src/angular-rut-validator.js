@@ -27,11 +27,13 @@
     .filter('rutFormat', rutFormatter);
 
   function rutFormatter(){
-    return function (rut, option){
+    return function (rut){
+      
+      if(!rut) return '';
       
       rut = rut.match(/[0-9Kk]+/g).join('');
         
-      return rut.slice(0,-1).replace((/[0-9](?=(?:[0-9]{3})+(?![0-9]))/g), '$&\.') + '-' + rut.slice(-1).toLowerCase();
+      return rut.slice(0,-1).replace((/[0-9](?=(?:[0-9]{3})+(?![0-9]))/g), '$&.') + '-' + rut.slice(-1).toLowerCase();
     };
   }
 
@@ -41,7 +43,8 @@
 
   function cleanFormatFilter(){
     return function (rut){
-      return rut.match(/[0-9Kk]+/g).join('');
+      return rut? rut.match(/[0-9Kk]+/g).join('')
+                : '';
     };
   }
 
