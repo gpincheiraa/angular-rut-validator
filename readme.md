@@ -6,8 +6,10 @@
 [coveralls-image]: https://coveralls.io/repos/github/gpincheiraa/angular-rut-validator/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/gpincheiraa/angular-rut-validator?branch=master
 
+[codeclimate-image]: https://codeclimate.com/github/gpincheiraa/angular-rut-validator/badges/gpa.svg
+[codeclimate-url]: https://codeclimate.com/github/gpincheiraa/angular-rut-validator
 
-[![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
+[![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Code Climate][codeclimate-image]][codeclimate-url]
 
 
 
