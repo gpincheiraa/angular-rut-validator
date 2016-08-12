@@ -136,7 +136,7 @@
       
       element.bind('keypress', function(e){
         
-        var key = String.fromCharCode(e.keyCode);
+        var key = e.key || String.fromCharCode(e.keyCode);
         
         if (!regexValidKeys.test(key)) {
           e.preventDefault();
