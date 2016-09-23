@@ -13,7 +13,7 @@
 
   function checkFormatFilter(){
     return function (rut){
-      var regexFormatosValidos = (/^(\d{7,8}\-(\d|k))$|^(\d{1,2}\.\d{3}\.\d{3}\-(\d|k){1})$|^(\d{8,9})$/i);
+      var regexFormatosValidos = (/^(\d{7,9}\-(\d|k))$|^(\d{1,3}\.\d{3}\.\d{3}\-(\d|k))$|^(\d{8,10})$/i);
 
       return (typeof rut === 'string') && regexFormatosValidos.test(rut);
     };
