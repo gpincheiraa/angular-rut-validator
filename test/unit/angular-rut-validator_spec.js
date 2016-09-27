@@ -7,6 +7,7 @@
                             '180958193',
                             '223961487',
                             '17.311.978-k',
+                            '9792547k',
                             '9.855.029-1',
                             '11.111.111-1',
                             '  6480644-0  ',
@@ -49,7 +50,7 @@
        
       listaRutsValidos.forEach(function(rut){
         esRutValido = filter('rutVerifier')(rut);
-        expect(esRutValido).toBe(true);
+        expect(esRutValido).toBe(true, 'Rut analizado: ' + rut);
       });
     }
 
@@ -61,7 +62,7 @@
        
       listaRutsInValidos.forEach(function(rut){
         esRutValido = filter('rutVerifier')(rut);
-        expect(esRutValido).toBe(false);
+        expect(esRutValido).toBe(false, 'Rut analizado: ' + rut);
       });
     }
 
@@ -129,8 +130,8 @@
       
         Object.defineProperty(evt, 'keyCode', {'value': keyCode});
       
-      } catch (e) {
-        
+      }
+      catch (e) {
         // PhantomJS 
         evt = document.createEvent('Events');
         evt.initEvent('keypress', true, true);
@@ -142,20 +143,16 @@
 
     function mouseFocus(){
       try {
-        
         // Chrome, Safari, Firefox
         evt = new MouseEvent('focusout');
-        
-      } catch (e) {
-        
+      }
+      catch (e) {
         // PhantomJS 
         evt = document.createEvent('Events');
         evt.initEvent('focusout', true, true);
       }
-
       element[0].dispatchEvent(evt);
     }
-
 
     //////////////////   SPECS //////////////////////////////////
     it('1. Debería validar rut en el evento de mouse "focusout". ', spec1);
@@ -204,12 +201,11 @@
                                     'b'.charCodeAt(0),
                                     '1'.charCodeAt(0)
                                   ],
-        ngModelCtrl = element.controller('ngModel');
+      ngModelCtrl = element.controller('ngModel');
 
       invalidCharacterKeys.forEach(function(keyCode){
         pressKey(keyCode);
-        scope.$apply();
-        //expect(scope.rut).toBe('');
+        scope.$digest();
       });
 
     }
