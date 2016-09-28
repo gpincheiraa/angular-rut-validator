@@ -6,6 +6,8 @@
       <form name="formName" class="ng-dirty ng-valid-parse ng-pending">
         <label>Rut</label>
         <input type="text" name="rut" ng-model="example.rut" gp-rut-validator>
+        <input type="text" name="other">
+        <input type="text" name="other_field">
         <div ng-messages="formName.rut.$error">
           <div ng-message="rutInvalid">Rut invalido.</div>
           <div ng-message="invalidFormat">Rut tiene formato inválido</div>
@@ -23,7 +25,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular-messages.js"></script>
   <!--script src="https://rawgit.com/gpincheiraa/angular-rut-validator/master/src/angular-rut-validator.js"-->
-<script src="../src/angular-rut-validator.js"></script>
+  <script src="../src/angular-rut-validator.js"></script>
 
   <script>
     (function () {

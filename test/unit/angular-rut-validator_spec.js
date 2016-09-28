@@ -192,20 +192,22 @@
 
     }
 
-    it('2. Debería evitar que se introduzcan caracteres no válidos"', spec2);
+    it('2. Debería evitar que se introduzcan caracteres no válidos', spec2);
     
     function spec2(){
-      var invalidCharacterKeys = [
-                                    'a'.charCodeAt(0),
-                                    'z'.charCodeAt(0),
-                                    'b'.charCodeAt(0),
-                                    '1'.charCodeAt(0)
-                                  ],
-      ngModelCtrl = element.controller('ngModel');
-
+      var ngModelCtrl = element.controller('ngModel'),
+          invalidCharacterKeys = [
+                                  'a'.charCodeAt(0),
+                                  'z'.charCodeAt(0),
+                                  'b'.charCodeAt(0),
+                                  '1'.charCodeAt(0)
+                                ];
+          
       invalidCharacterKeys.forEach(function(keyCode){
         pressKey(keyCode);
+        ngModelCtrl.$render();
         scope.$digest();
+        console.log(element.html(), scope.rut);
       });
 
     }

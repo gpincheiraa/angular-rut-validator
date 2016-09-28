@@ -43,8 +43,7 @@
 
   function cleanFormatFilter(){
     return function (rut){
-      return rut? rut.match(/[0-9Kk]+/g).join('')
-                : '';
+      return rut? rut.match(/[0-9Kk]+/g).join('') : '';
     };
   }
 
@@ -138,7 +137,8 @@
         
         var key = e.key || String.fromCharCode(e.keyCode);
         
-        if (!regexValidKeys.test(key)) {
+        //e.keyCode === 9 => Tab se activa en firefox (en Chrome y en Safari no sucede esto)
+        if (!regexValidKeys.test(key) && e.keyCode !== 9) {
           e.preventDefault();
           return false;
         }
