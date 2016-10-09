@@ -71,6 +71,7 @@
     function spec3(){
       var rut = '111111111';
       expect(filter('rutFormat')(rut)).toBe('11.111.111-1');
+      expect(filter('rutFormat')(null)).toBe('');
     }
 
     it('4. Debería retornar un rut limpio sin rut ni guiones utilizand el filtro "rutCleanFormat"', spec4);
@@ -79,6 +80,7 @@
       var rut = '11.111.111-1';
 
       expect(filter('rutCleanFormat')(rut)).toBe('111111111');
+      expect(filter('rutCleanFormat')(null)).toBe('');
     }
 
     it('5. Debería checkear si el formato es válido utilizando el rut "rutCheckFormat"', spec5);
@@ -112,7 +114,7 @@
     function eachSpec($rootScope, $compile){
       element = angular.element('<input ng-model="rut" gp-rut-validator>');
       scope = $rootScope.$new();
-      
+      scope.rut = '';
       $compile(element)(scope);
       scope.$digest();
     }
@@ -121,37 +123,18 @@
     
     function pressKey(keyCode) {
 
-      try {
-        
-        // Chrome, Safari, Firefox
-        evt = new KeyboardEvent('keypress');
-        
-        delete evt.keyCode;
-      
-        Object.defineProperty(evt, 'keyCode', {'value': keyCode});
-      
-      }
-      catch (e) {
-        // PhantomJS 
-        evt = document.createEvent('Events');
-        evt.initEvent('keypress', true, true);
-        evt.keyCode = keyCode;
-      }
+      evt = document.createEvent('Events');
+      evt.initEvent('keypress', true, true);
+      evt.keyCode = keyCode;
 
-      element[0].dispatchEvent(evt);
+      return element[0].dispatchEvent(evt);
     }
 
     function mouseFocus(){
-      try {
-        // Chrome, Safari, Firefox
-        evt = new MouseEvent('focusout');
-      }
-      catch (e) {
-        // PhantomJS 
-        evt = document.createEvent('Events');
-        evt.initEvent('focusout', true, true);
-      }
-      element[0].dispatchEvent(evt);
+      evt = document.createEvent('Events');
+      evt.initEvent('focusout', true, true);
+      
+      return element[0].dispatchEvent(evt);
     }
 
     //////////////////   SPECS //////////////////////////////////
@@ -192,24 +175,32 @@
 
     }
 
-    it('2. Debería evitar que se introduzcan caracteres no válidos', spec2);
+    it('2. Debería validar los caractéres introducidos', spec2);
     
     function spec2(){
-      var ngModelCtrl = element.controller('ngModel'),
+      var validCharacterKeys = [
+                                '1'.charCodeAt(0),
+                                '2'.charCodeAt(0),
+                                '.'.charCodeAt(0),
+                                '-'.charCodeAt(0),
+                                'k'.charCodeAt(0),
+                                'K'.charCodeAt(0)
+
+                                ],
           invalidCharacterKeys = [
-                                  'a'.charCodeAt(0),
+                                  'x'.charCodeAt(0),
                                   'z'.charCodeAt(0),
                                   'b'.charCodeAt(0),
-                                  '1'.charCodeAt(0)
+                                  '#'.charCodeAt(0)
                                 ];
-          
-      invalidCharacterKeys.forEach(function(keyCode){
-        pressKey(keyCode);
-        ngModelCtrl.$render();
-        scope.$digest();
-        console.log(element.html(), scope.rut);
+      
+      validCharacterKeys.forEach(function(keyCode){
+        expect(pressKey(keyCode)).toBe(true);
       });
-
+      
+      invalidCharacterKeys.forEach(function(keyCode){
+        expect(pressKey(keyCode)).toBe(false);
+      });
     }
 
     

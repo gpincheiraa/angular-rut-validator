@@ -65,7 +65,7 @@ module.exports = function(grunt) {
     },
     shell: {
       test: {
-        command: 'karma start --single-run'
+        command: 'karma start'
       }
     },
 

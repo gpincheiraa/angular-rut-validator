@@ -136,7 +136,6 @@
       element.bind('keypress', function(e){
         
         var key = e.key || String.fromCharCode(e.keyCode);
-        
         //e.keyCode === 9 => Tab se activa en firefox (en Chrome y en Safari no sucede esto)
         if (!regexValidKeys.test(key) && e.keyCode !== 9) {
           e.preventDefault();
